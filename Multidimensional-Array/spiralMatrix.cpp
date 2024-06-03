@@ -12,6 +12,7 @@ void spiralMatrix(vector<vector<int>> matrix){
     // dir == 1, r -> L.....
     // Print the array
 
+    // We can add boundary checks for overlap on every for loop as top <= bottom, left <= right
     while ((top <= bottom) && (left <= right)){
         for (int i = left; i <= right; i++){
             cout << matrix[top][i] << " ";
