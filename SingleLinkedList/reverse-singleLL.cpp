@@ -19,17 +19,18 @@ void printLL(struct Node *head)
     cout << endl;
 }
 
-
 // Save next node
 // Curr next to prev
 // Prev to curr
 // curr to next node saved one!
-struct Node * reverseSingleLL(struct Node *head){
-    struct Node * prev = NULL;
-    struct Node * curr = head;
-    struct Node * nextNode = NULL;
+struct Node *reverseSingleLL(struct Node *head)
+{
+    struct Node *prev = NULL;
+    struct Node *curr = head;
+    struct Node *nextNode = NULL;
 
-    while (curr != NULL){
+    while (curr != NULL)
+    {
         nextNode = curr->next;
         curr->next = prev;
         prev = curr;
@@ -39,9 +40,36 @@ struct Node * reverseSingleLL(struct Node *head){
     head = prev;
 
     return head;
-
 }
 
+struct Node *helper(struct Node *curr, struct Node *prev)
+{
+    if (curr == NULL)
+    {
+        return prev;
+    }
+    //Save the curr->next to send in the new call
+    struct Node * next = curr->next;
+
+    // Reverse the linkage
+    curr->next = prev;
+
+    return helper(next, curr);
+}
+
+struct Node *reversalRecursive(struct Node *head)
+{
+
+    if (head == NULL && head->next == NULL)
+    {
+        return head;
+    }
+
+    struct Node *curr = head;
+    struct Node *prev = NULL;
+
+    return helper(curr, prev);
+}
 
 struct Node *createLinkedList()
 {
@@ -76,7 +104,8 @@ int main()
     struct Node *head = createLinkedList();
     printLL(head);
 
-    head = reverseSingleLL(head);
+    // head = reverseSingleLL(head);
+    head = reversalRecursive(head);
     printLL(head);
 
     return 0;
