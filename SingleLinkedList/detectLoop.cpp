@@ -1,5 +1,5 @@
-#include<iostream>
-#include<bits/stdc++.h>
+#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 struct Node
@@ -31,7 +31,7 @@ void printLL(struct Node *head)
 struct Node *createLinkedList()
 {
     vector<int> data = {5, 10, 15, 20, 25};
-    
+
     struct Node *head = new Node(data[0]);
     head->next = new Node(data[1]);
     head->next->next = new Node(data[2]);
@@ -42,28 +42,33 @@ struct Node *createLinkedList()
     return head;
 }
 
-bool detectLoop(struct Node *head){
+bool detectLoop(struct Node *head)
+{
     struct Node *slow = head;
     struct Node *fast = head;
 
-    while (fast != NULL && fast->next != NULL && fast != slow){
+    while (fast != NULL && fast->next != NULL)
+    {
         slow = slow->next;
         fast = fast->next->next;
+        if (fast == slow)
+        {
+            return true;
+        }
     }
 
-    if (fast == slow){
-        return true;
-    }else{
-        return false;
-    }
+    return false;
 }
 
-bool detectLoopVisited(struct Node *head){
+bool detectLoopVisited(struct Node *head)
+{
     struct Node *ptr = head;
 
-    while (ptr != NULL){
+    while (ptr != NULL)
+    {
 
-        if (ptr->visited == true){
+        if (ptr->visited == true)
+        {
             return true;
         }
 
