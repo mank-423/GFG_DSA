@@ -53,12 +53,10 @@ struct Node *removeLoop(struct Node *head)
     {
         return head;
     }
-
     if (head->next == head)
     {
         head->next = NULL;
     }
-
     else
     {
         unordered_map<int, int> mp;
@@ -75,6 +73,13 @@ struct Node *removeLoop(struct Node *head)
 
     return head;
 }
+
+// Detect loop using Floyd's warhsell algo
+// Move slow to the begining of the LL, and keep fast at meeting point of slow and fast
+// Now move slow and fast one by one-> the point where they meet is the first Node of loop
+
+// Q1. Find the length of the loop
+// Q2. Find the first node of the loop.
 
 int main()
 {
