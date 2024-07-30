@@ -53,10 +53,12 @@ struct Node *removeLoop(struct Node *head)
     {
         return head;
     }
+
     if (head->next == head)
     {
         head->next = NULL;
     }
+    
     else
     {
         unordered_map<int, int> mp;
